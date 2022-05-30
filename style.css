@@ -143,6 +143,16 @@ img {
   margin-left: 4rem;
 }
 
+.nav-login {
+  background-color: var(--color-secondary-darker);
+  padding: 0.8rem 2.5rem;
+  border-radius: 3rem;
+}
+
+.nav-login:hover {
+  background-color: var(--color-secondary);
+}
+
 .nav__link:link,
 .nav__link:visited {
   font-size: 1.7rem;
@@ -768,7 +778,7 @@ nav {
   gap: 2rem;
 
   /* NOTE This creates the fade in/out anumation */
-  opacity: 0;
+  opacity: 100;
   transition: all 1s;
 }
 

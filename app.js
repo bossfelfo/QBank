@@ -61,7 +61,6 @@ const labelSumOut = document.querySelector(".summary__value--out");
 const labelSumInterest = document.querySelector(".summary__value--interest");
 const labelTimer = document.querySelector(".timer");
 
-const containerApp = document.querySelector(".app");
 const containerMovements = document.querySelector(".movements");
 
 const btnLogin = document.querySelector(".login__btn");
@@ -196,7 +195,8 @@ const startLogOutTimer = function () {
     if (time === 0) {
       clearInterval(timer);
       labelWelcome.textContent = "Log in to get started";
-      containerApp.style.opacity = 0;
+      document.querySelector(".modal").classList.toggle("hidden");
+      document.querySelector(".overlay_login").classList.toggle("hidden");
     }
 
     // Decrease 1s
@@ -204,7 +204,7 @@ const startLogOutTimer = function () {
   };
 
   // Set time to 5 minutes
-  let time = 120;
+  let time = 300;
 
   // Call the timer every second
   tick();
@@ -220,7 +220,6 @@ let currentAccount, timer;
 // FAKE ALWAYS LOGGED IN
 // currentAccount = account1;
 // updateUI(currentAccount);
-// containerApp.style.opacity = 100;
 
 btnLogin.addEventListener("click", function (e) {
   // Prevent form from submitting
@@ -236,7 +235,6 @@ btnLogin.addEventListener("click", function (e) {
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(" ")[0]
     }`;
-    containerApp.style.opacity = 100;
     document.querySelector(".modal").classList.toggle("hidden");
     document.querySelector(".overlay_login").classList.toggle("hidden");
 
@@ -353,7 +351,8 @@ btnClose.addEventListener("click", function (e) {
     accounts.splice(index, 1);
 
     // Hide UI
-    containerApp.style.opacity = 0;
+    document.querySelector(".modal").classList.toggle("hidden");
+    document.querySelector(".overlay_login").classList.toggle("hidden");
   }
 
   inputCloseUsername.value = inputClosePin.value = "";
