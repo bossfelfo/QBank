@@ -215,7 +215,7 @@
       <div class="section__title section__title--testimonials">
         <h2 class="section__description">Not sure yet?</h2>
         <h3 class="section__header">
-          Millions of Bankists are already making their lifes simpler.
+          Millions of QBank customers are already making their lifes simpler.
         </h3>
       </div>
 
@@ -289,8 +289,7 @@
     <section class="section section--sign-up">
       <div class="section__title">
         <h3 class="section__header">
-          The best day to join Bankist was one year ago. The second best is
-          today!
+          The best day to join QBank was one year ago. The second best is today!
         </h3>
       </div>
       <button class="btn btn--show-modal">Open your free account today!</button>
@@ -333,13 +332,16 @@
         in just <span class="highlight">5 minutes</span>
       </h2>
       <form class="modal__form">
-        <label>First Name</label>
+        <label>Full Name</label>
         <input type="text" />
-        <label>Last Name</label>
-        <input type="text" />
-        <label>Email Address</label>
-        <input type="email" />
-        <button class="btn">Next step &rarr;</button>
+        <label>Account Type</label>
+        <select id="accountType" name="accountType">
+          <option value="1.2%">Savings Account</option>
+          <option value="1.5%">Current Account</option>
+        </select>
+        <label>4 Digit Pin</label>
+        <input type="number" />
+        <button class="btn register" type="submit">Register &rarr;</button>
       </form>
     </div>
     <div class="overlay hidden"></div>

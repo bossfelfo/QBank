@@ -5,6 +5,7 @@ const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
+const btnRegisterModal = document.querySelector(".register");
 const btnScrollTo = document.querySelector(".btn--scroll-to");
 const section1 = document.querySelector("#section--1");
 const nav = document.querySelector(".nav");
@@ -30,8 +31,13 @@ const closeModal = function () {
   overlay.classList.add("hidden");
 };
 
-btnsOpenModal.forEach((btn) => btn.addEventListener("click", openModal));
+const registerUser = function (e) {
+  e.preventDefault();
+  location.href = "portal.html";
+};
 
+btnRegisterModal.addEventListener("click", registerUser);
+btnsOpenModal.forEach((btn) => btn.addEventListener("click", openModal));
 btnCloseModal.addEventListener("click", closeModal);
 overlay.addEventListener("click", closeModal);
 
