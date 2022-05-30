@@ -301,6 +301,12 @@ const slider = function () {
 };
 slider();
 
+// Login Button
+
+document
+  .querySelector(".login")
+  .addEventListener("click", () => (location.href = "portal.html"));
+
 ///////////////////////////////////////
 ///////////////////////////////////////
 ///////////////////////////////////////
