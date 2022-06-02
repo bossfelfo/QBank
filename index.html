@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="style.css" />
     <title>QBank | When Banking meets Minimalist</title>
 
+    <script defer src="app.js"></script>
     <script defer src="script.js"></script>
   </head>
   <body>
@@ -336,15 +337,20 @@
       </h2>
       <form class="modal__form">
         <label>Full Name</label>
-        <input type="text" />
+        <input type="text" class="register__fullName" required />
         <label>Account Type</label>
-        <select id="accountType" name="accountType">
-          <option value="1.2%">Savings Account</option>
-          <option value="1.5%">Current Account</option>
+        <select
+          id="accountType"
+          name="accountType"
+          class="register__accountType"
+          required
+        >
+          <option value="1.2">Savings Account</option>
+          <option value="1.5">Current Account</option>
         </select>
         <label>4 Digit Pin</label>
-        <input type="number" />
-        <button class="btn register" type="submit">Register &rarr;</button>
+        <input type="number" class="register__pin" required />
+        <button class="btn register">Register &rarr;</button>
       </form>
     </div>
     <div class="overlay hidden"></div>

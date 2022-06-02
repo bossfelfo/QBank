@@ -13,9 +13,11 @@ const tabs = document.querySelectorAll(".operations__tab");
 const tabsContainer = document.querySelector(".operations__tab-container");
 const tabsContent = document.querySelectorAll(".operations__content");
 
+const inputFullName = document.querySelector(".register__fullName");
+const inputAccountType = document.querySelector(".register__accountType");
+const inputPin = document.querySelector(".register__pin");
+
 ///////////////////////////////////////
-//Current Date Generator
-currentYear.textContent = new Date().getFullYear();
 
 ///////////////////////////////////////
 // Modal window
@@ -31,12 +33,6 @@ const closeModal = function () {
   overlay.classList.add("hidden");
 };
 
-const registerUser = function (e) {
-  e.preventDefault();
-  location.href = "portal.html";
-};
-
-btnRegisterModal.addEventListener("click", registerUser);
 btnsOpenModal.forEach((btn) => btn.addEventListener("click", openModal));
 btnCloseModal.addEventListener("click", closeModal);
 overlay.addEventListener("click", closeModal);
@@ -51,17 +47,17 @@ document.addEventListener("keydown", function (e) {
 // Button scrolling
 btnScrollTo.addEventListener("click", function (e) {
   const s1coords = section1.getBoundingClientRect();
-  console.log(s1coords);
+  //   console.log(s1coords);
 
-  console.log(e.target.getBoundingClientRect());
+  //   console.log(e.target.getBoundingClientRect());
 
-  console.log("Current scroll (X/Y)", window.pageXOffset, window.pageYOffset);
+  //   console.log("Current scroll (X/Y)", window.pageXOffset, window.pageYOffset);
 
-  console.log(
-    "height/width viewport",
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  );
+  //   console.log(
+  //     "height/width viewport",
+  //     document.documentElement.clientHeight,
+  //     document.documentElement.clientWidth
+  //   );
 
   // Scrolling
   // window.scrollTo(
@@ -279,6 +275,9 @@ const slider = function () {
     createDots();
 
     activateDot(0);
+
+    //Current Date Generator
+    currentYear.textContent = new Date().getFullYear();
   };
   init();
 
@@ -304,8 +303,39 @@ slider();
 // Login Button
 
 document
-  .querySelector(".login")
+  .querySelector(".nav-login")
   .addEventListener("click", () => (location.href = "portal.html"));
+
+//New User Registration
+const Account = function (FullName, fourDigitPin, userAccountType) {
+  this.owner = FullName;
+  this.movements = [];
+  this.interestRate = userAccountType;
+  this.pin = fourDigitPin;
+
+  this.movementsDates = [];
+  this.currency = "USD";
+  this.locale = "en-US";
+};
+
+const newAccount = function (e) {
+  e.preventDefault();
+  const userFullName = inputFullName.value;
+  const userPin = inputPin.value;
+  const userAccountType = inputAccountType.value;
+
+  const user = new Account(userFullName, +userPin, +userAccountType);
+  //   console.log(JSON.parse(JSON.stringify(user)));
+  accounts.push(JSON.parse(JSON.stringify(user)));
+
+  setLocalStorage();
+  location.href = "portal.html";
+
+  //   console.log(accounts);
+  return user;
+};
+
+btnRegisterModal.addEventListener("click", newAccount);
 
 ///////////////////////////////////////
 ///////////////////////////////////////

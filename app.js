@@ -10,7 +10,7 @@
 // DIFFERENT DATA! Contains movement dates, currency and locale
 
 const account1 = {
-  owner: "Jonas Schmedtmann",
+  owner: "Felix F",
   movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
   interestRate: 1.2, // %
   pin: 1111,
@@ -49,7 +49,21 @@ const account2 = {
   locale: "en-US",
 };
 
-const accounts = [account1, account2];
+let accounts = [account1, account2];
+
+const setLocalStorage = function () {
+  window.localStorage.setItem("storedAccounts", JSON.stringify(accounts));
+};
+const resetLocalStorage = function () {
+  localStorage.removeItem("storedAccounts");
+};
+
+const data = JSON.parse(window.localStorage.getItem("storedAccounts"));
+
+if (data) {
+  accounts = data;
+}
+console.log(accounts);
 
 /////////////////////////////////////////////////
 // Elements
@@ -85,7 +99,7 @@ const formatMovementDate = function (date, locale) {
     Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
   const daysPassed = calcDaysPassed(new Date(), date);
-  console.log(daysPassed);
+  //   console.log(daysPassed);
 
   if (daysPassed === 0) return "Today";
   if (daysPassed === 1) return "Yesterday";
@@ -228,7 +242,7 @@ btnLogin.addEventListener("click", function (e) {
   currentAccount = accounts.find(
     (acc) => acc.username === inputLoginUsername.value
   );
-  console.log(currentAccount);
+  //   console.log(currentAccount);
 
   if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
@@ -300,6 +314,7 @@ btnTransfer.addEventListener("click", function (e) {
 
     // Update UI
     updateUI(currentAccount);
+    setLocalStorage();
 
     // Reset timer
     clearInterval(timer);
@@ -325,6 +340,7 @@ btnLoan.addEventListener("click", function (e) {
 
       // Update UI
       updateUI(currentAccount);
+      setLocalStorage();
 
       // Reset timer
       clearInterval(timer);
@@ -344,11 +360,12 @@ btnClose.addEventListener("click", function (e) {
     const index = accounts.findIndex(
       (acc) => acc.username === currentAccount.username
     );
-    console.log(index);
+    // console.log(index);
     // .indexOf(23)
 
     // Delete account
     accounts.splice(index, 1);
+    setLocalStorage();
 
     // Hide UI
     document.querySelector(".modal").classList.toggle("hidden");
